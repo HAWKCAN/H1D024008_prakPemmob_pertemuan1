@@ -45,7 +45,7 @@ Pertemuan ketiga membahas aplikasi yang lebih kompleks. Mahasiswa belajar mengin
 **Tanggal**: Selasa, 22 September 2026  
 **Topik:** Recomposition dan UI Lifecycle
 
-[Tugas Pertemuan 4]
+
 ![Hubungi Kami](docs/pert-4.png)
 ![Daftar Produk](docs/pert-4-2.png)
 ![Detail Produk](docs/pert-4-3.png)
