@@ -1,40 +1,59 @@
 # Laporan Praktikum Pemrograman Mobile
 
-**Nama**        : Fariz Rahman Syahida
-**NIM**         : H1D024008
-**Shift**       : Awal F / Akhir C 
-**Praktikum**   : Pemrograman Mobile
+| | |
+|---|---|
+| **Nama** | Fariz Rahman Syahida |
+| **NIM** | H1D024008 |
+| **Shift** | Awal F / Akhir C |
+| **Praktikum** | Pemrograman Mobile |
+
+**Daftar Isi:** [Pertemuan 1](#pertemuan-1) | [Pertemuan 2](#pertemuan-2) | [Pertemuan 3](#pertemuan-3) | [Pertemuan 4](#pertemuan-4)
 
 ---
 
-## 📝 Tugas Pertemuan 1
+## Pertemuan 1
 **Tanggal**: Selasa, 1 September 2026
 
 ![Tugas Pertemuan 1](docs/akumulasi_pert1-2-3.png)
 
-**Kesimpulan Praktikum:**  
-Pada pertemuan pertama, praktikum memberikan pemahaman dasar mengenai konsep pengembangan aplikasi mobile. Mahasiswa dapat mengenali struktur proyek, alur kerja, serta pentingnya konsistensi dalam penulisan kode agar aplikasi mudah dikembangkan dan dipelihara.
+**Kesimpulan:**
+Pertemuan pertama memberikan pemahaman dasar tentang pengembangan aplikasi mobile. Mahasiswa mengenali struktur proyek dan alur kerja, serta pentingnya konsistensi penulisan kode agar aplikasi mudah dikembangkan dan dipelihara.
 
 ---
 
-## 📝 Tugas Pertemuan 2
+## Pertemuan 2
 **Tanggal**: Selasa, 8 September 2026
 
 ![Tugas Pertemuan 2](docs/akumulasi_pert1-2-3.png)
 
-**Kesimpulan Praktikum:**  
-Pertemuan kedua menekankan pada implementasi fitur interaktif dalam aplikasi mobile. Mahasiswa belajar bagaimana menghubungkan antarmuka dengan logika program sehingga aplikasi dapat merespons input pengguna secara dinamis dan memberikan pengalaman yang lebih baik.
+**Kesimpulan:**
+Pertemuan kedua menekankan fitur interaktif. Mahasiswa belajar menghubungkan antarmuka dengan logika program sehingga aplikasi dapat merespons input pengguna secara dinamis.
 
 ---
 
-## 📝 Tugas Pertemuan 3
+## Pertemuan 3
 **Tanggal**: Selasa, 15 September 2026
 
-![tugas-3.png](docs/docs/akumulasi_pert1-2-3.pngg)
+![Tugas Pertemuan 3](docs/akumulasi_pert1-2-3.png)
 
-**Kesimpulan Praktikum:**  
-Pertemuan ketiga membuka wawasan tentang pengembangan aplikasi mobile yang lebih kompleks. Mahasiswa belajar bagaimana mengintegrasikan berbagai komponen dan fitur untuk menciptakan aplikasi yang lebih lengkap dan bermanfaat.
+**Kesimpulan:**
+Pertemuan ketiga membahas aplikasi yang lebih kompleks. Mahasiswa belajar mengintegrasikan berbagai komponen dan fitur untuk membuat aplikasi yang lebih lengkap.
 
+---
 
-README.md
-2 KB
+## Pertemuan 4
+**Tanggal**: Selasa, 22 September 2026  
+**Topik:** Recomposition dan UI Lifecycle
+
+[Tugas Pertemuan 4]
+![Hubungi Kami](docs/pert-4-1.png)
+![Daftar Produk](docs/pert-4-2.png)
+![Detail Produk](docs/pert-4-3.png)
+
+**Yang dikerjakan:**
+- Form **Hubungi Kami**: dropdown tipe pesan, checkbox persetujuan, unggah gambar (photo picker), dan validasi input.
+- **Daftar Produk**: search bar yang terintegrasi dengan filter kategori, serta indikator loading memakai `LaunchedEffect`.
+- **Detail Produk**: pengaturan jumlah beli dan navigasi antar layar dengan `NavHost`.
+
+**Kesimpulan:**
+Pertemuan keempat memperkenalkan *state*, *recomposition*, dan *state hoisting* dengan pola *Unidirectional Data Flow*, yaitu data mengalir ke bawah dan *event* mengalir ke atas lewat lambda. Pemisahan *stateful* dan *stateless composable* membuat UI lebih mudah diuji dan dipakai ulang, sedangkan `LaunchedEffect` dan `delay` menunjukkan cara menjalankan proses asinkron tanpa membuat UI macet.
