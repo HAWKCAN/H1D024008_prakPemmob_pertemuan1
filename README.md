@@ -57,3 +57,16 @@ Pertemuan ketiga membahas aplikasi yang lebih kompleks. Mahasiswa belajar mengin
 
 **Kesimpulan:**
 Pertemuan keempat memperkenalkan *state*, *recomposition*, dan *state hoisting* dengan pola *Unidirectional Data Flow*, yaitu data mengalir ke bawah dan *event* mengalir ke atas lewat lambda. Pemisahan *stateful* dan *stateless composable* membuat UI lebih mudah diuji dan dipakai ulang, sedangkan `LaunchedEffect` dan `delay` menunjukkan cara menjalankan proses asinkron tanpa membuat UI macet.
+
+[Tugas Pertemuan 5]
+![Tampilan Loading / Daftar Produk](docs/pert-5-3.png)
+![Filter Kategori & Pencarian API](docs/pert-5-2.png)
+![Detail Produk dari API](docs/pert-5.png)
+
+**Yang dikerjakan:**
+- **Pembersihan & Izin**: Menghapus data *dummy*, menambahkan izin `INTERNET`, serta mengatur `BASE_URL` dan dependensi (Retrofit, Gson, Coil).
+- **Network & ViewModel**: Membuat `ApiInterface`, `ApiClient`, dan `ProductViewModel` menggunakan Coroutines untuk mengunduh data produk dan kategori.
+- **UI State & Tampilan**: Menerapkan `ProductUiState` (`Loading`, `Success`, `Error`) dengan `StateFlow`, mengganti gambar dengan `AsyncImage` (Coil), dan mengintegrasikan status jaringan ke tampilan layar.
+
+**Kesimpulan:**
+Pertemuan kelima berhasil menerapkan integrasi REST API dan arsitektur MVVM, sehingga data dan gambar dimuat secara dinamis dari server dengan penanganan UI state yang reaktif.

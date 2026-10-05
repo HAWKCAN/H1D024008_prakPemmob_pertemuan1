@@ -32,7 +32,7 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -45,15 +45,15 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
 import com.pemmob.Fariz.R
 import com.pemmob.Fariz.Routes
-import com.pemmob.Fariz.data.dummy.DummyData
 import com.pemmob.Fariz.data.model.Category
 import com.pemmob.Fariz.data.model.Product
-import kotlinx.coroutines.delay
+import com.pemmob.Fariz.ui.viewmodel.ProductUiState
+import com.pemmob.Fariz.ui.viewmodel.ProductViewModel
 
 @Composable
 fun ProductItemCard(product: Product, onClick: () -> Unit) {
@@ -135,37 +135,59 @@ fun CategoryItem(category: Category, isSelected: Boolean, onClick: () -> Unit) {
 }
 
 @Composable
-fun DaftarProductScreen(navController: NavController? = null) {
-    // null = tampilkan semua kategori
+fun DaftarProductScreen(
+    navController: NavController? = null,
+    viewModel: ProductViewModel = viewModel()
+) {
+
     var selectedCategoryId by rememberSaveable { mutableStateOf<Int?>(null) }
     var searchQuery by rememberSaveable { mutableStateOf("") }
-    var isLoading by remember { mutableStateOf(true) }
-    var products by remember { mutableStateOf<List<Product>>(emptyList()) }
+    val uiState by viewModel.uiState.collectAsState()
 
-    // Filter dijalankan di sini, hasilnya disimpan ke state 'products'
-    LaunchedEffect(selectedCategoryId, searchQuery) {
-        isLoading = true
-        delay(500) // simulasi loading
-        products = DummyData.products.filter { p ->
-            // jika di modelmu field-nya category_id, ganti p.category?.id dengan p.category_id
-            (selectedCategoryId == null || p.category?.id == selectedCategoryId) &&
-                    (searchQuery.isBlank() || p.name.contains(searchQuery, ignoreCase = true))
-        }
-        isLoading = false
-    }
+   when (val state=uiState){
+       is ProductUiState.Loading->{
+           Box (modifier= Modifier
+               .fillMaxSize(), contentAlignment = Alignment.Center){
+               CircularProgressIndicator()
+           }
+       }
+       is ProductUiState.Error->{
+           Box(modifier = Modifier
+               .fillMaxSize(), contentAlignment = Alignment.Center){
+               Text("Error: ${state.message}",color = MaterialTheme.colorScheme.error)
+           }
+       }
+       is ProductUiState.Success -> {
+           if (selectedCategoryId == null && state.categories.isNotEmpty()){
+               selectedCategoryId = state.categories.first().id
+           }
+           val filteredByCategory = if (selectedCategoryId != null ){
+               state.products.filter { it.category_id == selectedCategoryId }
+           }else {
+               state.products
+           }
 
-    StatelessDaftarProduct(
-        categories = DummyData.categories,
-        selectedCategoryId = selectedCategoryId,
-        // klik kategori yang sama lagi = batalkan filter
-        onCategorySelected = { id -> selectedCategoryId = if (selectedCategoryId == id) null else id },
-        searchQuery = searchQuery,
-        onSearchQueryChange = { searchQuery = it },
-        isLoading = isLoading,
-        products = products,
-        onProductClick = { product -> navController?.navigate(Routes.detail(product.id)) },
-        onContactUsClick = { navController?.navigate(Routes.HUBUNGI) }
-    )
+           val filteredProducts = if (searchQuery.isBlank()) {
+               filteredByCategory
+           }else {
+           filteredByCategory.filter { it.name.contains(searchQuery,ignoreCase=true)
+           }
+           }
+           StatelessDaftarProduct(
+               categories = state.categories,
+               selectedCategoryId = selectedCategoryId,
+               onCategorySelected = { id -> selectedCategoryId = if (selectedCategoryId == id) null else id },
+               searchQuery = searchQuery,
+               onSearchQueryChange = { searchQuery = it },
+               isLoading = false,
+               products = filteredProducts,
+               onProductClick = { product -> navController?.navigate(Routes.detail(product.id)) },
+               onContactUsClick = { navController?.navigate(Routes.HUBUNGI) }
+           )
+       }
+   }
+
+
 }
 
 @Composable
@@ -284,10 +306,3 @@ fun StatelessDaftarProduct(
     }
 }
 
-@Preview(showBackground = true, showSystemUi = true)
-@Composable
-fun PreviewDaftarProductScreen() {
-    MaterialTheme {
-        DaftarProductScreen()
-    }
-}

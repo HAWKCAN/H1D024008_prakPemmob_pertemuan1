@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -15,6 +16,7 @@ import com.pemmob.Fariz.ui.screen.BasicInfoScreen
 import com.pemmob.Fariz.ui.screen.DaftarProductScreen
 import com.pemmob.Fariz.ui.screen.DetailProductScreen
 import com.pemmob.Fariz.ui.screen.HubungiKamiScreen
+import com.pemmob.Fariz.ui.viewmodel.ProductViewModel
 
 object Routes {
     const val INFO = "info"
@@ -39,6 +41,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun AppNavigation() {
     val navController = rememberNavController()
+    val productViewModel: ProductViewModel = viewModel()
 
     NavHost(navController = navController, startDestination = Routes.INFO) {
         composable(Routes.INFO) {
@@ -48,7 +51,10 @@ fun AppNavigation() {
             )
         }
         composable(Routes.DAFTAR) {
-            DaftarProductScreen(navController)
+            DaftarProductScreen(
+                navController = navController,
+                viewModel = productViewModel
+            )
         }
         composable(
             route = Routes.DETAIL,
@@ -56,7 +62,8 @@ fun AppNavigation() {
         ) { entry ->
             DetailProductScreen(
                 productId = entry.arguments?.getInt("productId") ?: 0,
-                navController = navController
+                navController = navController,
+                viewModel = productViewModel
             )
         }
         composable(Routes.HUBUNGI) {
