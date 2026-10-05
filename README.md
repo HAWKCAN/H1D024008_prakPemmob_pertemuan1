@@ -7,7 +7,7 @@
 | **Shift** | Awal F / Akhir C |
 | **Praktikum** | Pemrograman Mobile |
 
-**Daftar Isi:** [Pertemuan 1](#pertemuan-1) | [Pertemuan 2](#pertemuan-2) | [Pertemuan 3](#pertemuan-3) | [Pertemuan 4](#pertemuan-4)
+**Daftar Isi:** [Pertemuan 1](#pertemuan-1) | [Pertemuan 2](#pertemuan-2) | [Pertemuan 3](#pertemuan-3) | [Pertemuan 4](#pertemuan-4) | [Pertemuan 5](#pertemuan-5)
 
 ---
 
@@ -45,8 +45,7 @@ Pertemuan ketiga membahas aplikasi yang lebih kompleks. Mahasiswa belajar mengin
 **Tanggal**: Selasa, 22 September 2026  
 **Topik:** Recomposition dan UI Lifecycle
 
-[Tugas Pertemuan 4]
-![Hubungi Kami](docs/pert-4-1.png)
+![Hubungi Kami](docs/pert-4.png)
 ![Daftar Produk](docs/pert-4-2.png)
 ![Detail Produk](docs/pert-4-3.png)
 
@@ -58,7 +57,12 @@ Pertemuan ketiga membahas aplikasi yang lebih kompleks. Mahasiswa belajar mengin
 **Kesimpulan:**
 Pertemuan keempat memperkenalkan *state*, *recomposition*, dan *state hoisting* dengan pola *Unidirectional Data Flow*, yaitu data mengalir ke bawah dan *event* mengalir ke atas lewat lambda. Pemisahan *stateful* dan *stateless composable* membuat UI lebih mudah diuji dan dipakai ulang, sedangkan `LaunchedEffect` dan `delay` menunjukkan cara menjalankan proses asinkron tanpa membuat UI macet.
 
-[Tugas Pertemuan 5]
+---
+
+## Pertemuan 5
+**Tanggal**: Selasa, 29 September 2026  
+**Topik:** Networking & Architecture
+
 ![Tampilan Loading / Daftar Produk](docs/pert-5-3.png)
 ![Filter Kategori & Pencarian API](docs/pert-5-2.png)
 ![Detail Produk dari API](docs/pert-5.png)
